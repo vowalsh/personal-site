@@ -53,6 +53,11 @@
 </script>
 
 <style>
+    *   {
+        scrollbar-width: none;
+        list-style-size: 0.5em;
+    }
+
     :global(html, body) {
         overflow-x: hidden;
         scroll-behavior: smooth;
@@ -89,11 +94,29 @@
         opacity: 1;
     }
 
+    .timeline-line {
+        height: calc(100% + 2.75rem);
+    }
+
+    @media (min-width: 640px) {
+        .timeline-line {
+            height: calc(100% + 3rem);
+        }
+    }
+
+    .timeline-item:last-child .timeline-line {
+        height: 0;
+    }
+
+    .timeline-item:not(:last-child) .timeline-line {
+        height: calc(100% + 3rem);
+    }
+
 </style>
 
 <Header {currentSection} />
 
-<main class="bg-terminal-black text-terminal-white font-mono min-h-screen overflow-y-auto">
+<main class="bg-terminal-black text-terminal-white font-mono min-h-screen overflow-y-auto text-sm sm:text-base">
     <!-- home -->
     <section id="owal" class="min-h-screen flex items-center justify-center p-4 sm:p-8" class:section-visible={sectionVisibility['owal']}>
         <div class="section-content w-full max-w-5xl px-4 sm:px-6 lg:px-8 flex justify-center items-center">
@@ -148,26 +171,25 @@
     </section>
       
     <!-- timeline -->
-    <section id="timeline" class="flex items-center justify-center bg-terminal-black text-terminal-white p-4 sm:p-8" class:section-visible={sectionVisibility['timeline']}>
-        <div class="section-content w-full max-w-3xl max-h-[80vh] overflow-y-auto relative">
+    <section id="timeline" class="min-h-screen flex items-center justify-center bg-terminal-black text-terminal-white p-4 sm:p-8" class:section-visible={sectionVisibility['timeline']}>
+        <div class="section-content w-full max-w-3xl relative overflow-y-auto max-h-[80vh]">
             <h2 class="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center sticky top-0 bg-terminal-black py-4 z-10">timeline</h2>
-            <div class="relative mt-8 sm:mt-16 pl-4 sm:pl-0">
+            <div class="relative mt-8 sm:mt-16">
                 {#each timelineEvents as event, index}
-                    <div class="mb-6 sm:mb-8 relative flex">
-                        <div class="absolute left-0 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-terminal-white mt-1">
-                            {#if index !== timelineEvents.length - 1}
-                                <div class="absolute left-1/2 top-full w-0.5 bg-terminal-white transform -translate-x-1/2" style="height: calc(100% + 1.5rem);"></div>
-                            {/if}
-                        </div>
-                        <div class="ml-6 sm:ml-10 flex-grow">
-                            <div role="button" tabindex="0" class="cursor-pointer" on:click={() => toggleEvent(event)} on:keydown={(e) => e.key === 'Enter' && toggleEvent(event)}>
-                                <div class="flex flex-col sm:flex-row sm:items-baseline">
-                                    <div class="font-bold text-sm sm:text-base mb-1 sm:mb-0 sm:w-24 sm:text-right sm:pr-4" class:text-[#94cbf3]={activeEvents.has(event)}>{event.year}</div>
-                                    <div class="text-sm sm:text-base flex-grow pr-4" class:text-[#94cbf3]={activeEvents.has(event)}>{event.description}</div>
+                <div class="mb-6 sm:mb-8 relative flex cursor-pointer timeline-item" on:click={() => toggleEvent(event)} on:keydown={(e) => e.key === 'Enter' && toggleEvent(event)} role="button" tabindex="0">
+                    <div class="w-16 sm:w-24 text-right pr-2 sm:pr-4 font-bold text-sm sm:text-base flex-shrink-0" class:text-[#94cbf3]={activeEvents.has(event)}>{event.year}</div>
+                    <div class="ml-2 sm:ml-4 flex-grow relative">
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-terminal-white mt-1 flex-shrink-0 relative">
+                                {#if index !== timelineEvents.length - 1}
+                                {/if}
+                            </div>
+                                <div class="ml-2 sm:ml-4 text-sm sm:text-base" class:text-[#94cbf3]={activeEvents.has(event)}>
+                                    {event.description}
                                 </div>
                             </div>
                             {#if activeEvents.has(event)}
-                                <div class="mt-2 sm:mt-4 sm:ml-28 w-full pr-4" transition:fade={{ duration: 300 }}>
+                                <div class="mt-2 sm:mt-4 ml-5 sm:ml-8 pr-2 sm:pr-4" transition:fade={{ duration: 300 }}>
                                     <div class="italic text-xs sm:text-sm">{event.fullTimeline}</div>
                                     {#if event.organizations && event.organizations.length > 0}
                                         <div class="mt-1 sm:mt-2 text-xs sm:text-sm">
@@ -183,26 +205,27 @@
             </div>
         </div>
     </section>
-    
-    
-    
       
+
     <!-- blog -->
     <section id="thoughts" class="flex items-center justify-center bg-terminal-black text-terminal-white p-8" class:section-visible={sectionVisibility['thoughts']}>
         <div class="section-content w-full max-w-3xl">
             <h2 class="text-3xl font-bold mb-12 text-center">thoughts</h2>
             <div class="relative">
                 {#each blogPosts as post, index}
-                    <div class="mb-8">
-                        <div class="flex items-start cursor-pointer" on:click={() => toggleBlogPost(post)}>
-                            <div class="w-4 h-4 rounded-full bg-terminal-white relative mt-1">
-                                {#if index !== blogPosts.length - 1}
-                                    <div class="absolute left-1/2 top-full w-0.5 bg-terminal-white transform -translate-x-1/2" style="height: calc(100% + 2rem);"></div>
-                                {/if}
-                            </div>
+                <div class="mb-8">
+                    <div class="flex items-center cursor-pointer" on:click={() => toggleBlogPost(post)}>
+                            {#if !activeBlogPosts.has(post)}
+                                <div class="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-terminal-white relative">
+                                    {#if index !== blogPosts.length - 1 && blogPosts.length > 1}
+                                        <div class="absolute left-1/2 top-full w-0.5 bg-terminal-white transform -translate-x-1/2" style="height: calc(100% + 1.5rem);"></div>
+                                    {/if}
+                                </div>
+                            {/if}
+
                             <div class="ml-4 flex-grow">
                                 <div class="flex justify-between items-baseline">
-                                    <h3 class="text-xl font-bold" class:text-[#94cbf3]={activeBlogPosts.has(post)}>{post.title}</h3>
+                                    <h3 class="text-lg sm:text-xl font-bold" class:text-[#94cbf3]={activeBlogPosts.has(post)}>{post.title}</h3>
                                     <span class="text-sm italic">{post.date}</span>
                                 </div>
                                 {#if activeBlogPosts.has(post)}
@@ -212,6 +235,7 @@
                                     <p class="mt-2 text-xs whitespace-pre-line">{@html post.content}</p>
                                 {/if}
                             </div>
+                            
                         </div>
                     </div>
                 {/each}
