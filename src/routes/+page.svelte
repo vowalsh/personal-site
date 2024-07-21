@@ -21,11 +21,11 @@
   
   <Header {currentSection} />
   
-  <main class="bg-background text-text font-mono">
+  <main class="bg-terminal-black text-terminal-white font-mono min-h-screen">
     <section id="home" class="min-h-screen flex items-center justify-center">
       <div class="max-w-2xl">
-        <h1 class="text-4xl font-bold mb-4">Your Name</h1>
-        <p class="text-xl">Your concise subheader</p>
+        <h1 class="text-4xl font-bold mb-4">v. oliver walsh</h1>
+        <p class="text-xl">machine learning engineer</p>
       </div>
     </section>
     <!-- Other sections... -->

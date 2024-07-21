@@ -10,6 +10,12 @@ export default {
       fontFamily: {
         mono: ['Menlo', 'Monaco', 'Courier New', 'monospace'],
       },
+      backgroundColor: {
+        'header': 'rgba(0, 0, 0, 0.8)',
+      },
+      textColor: {
+        'header': '#FFFFFF',
+      },
     },
   },
   plugins: [],
