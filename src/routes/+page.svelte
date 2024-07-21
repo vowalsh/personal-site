@@ -142,7 +142,8 @@
     <!-- timeline -->
     <section id="timeline" class="min-h-screen flex items-center justify-center bg-terminal-black text-terminal-white p-2 sm:p-4 md:p-8" class:section-visible={sectionVisibility['timeline']}>
         <div class="section-content w-full max-w-3xl relative overflow-y-auto max-h-[80vh]">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-8 md:mb-12 text-center sticky top-0 bg-terminal-black py-2 sm:py-4 z-10">timeline</h2>
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-0.5 text-center sticky top-0 bg-terminal-black py-2 sm:py-4 z-10">timeline</h2>
+            <p class="text-[8px] sm:text-[10px] md:text-xs text-center text-gray-400 mb-0.5">click events for details</p>
             <div class="relative mt-4 sm:mt-8 md:mt-16">
                 {#each timelineEvents as event, index}
                 <div class="mb-3 sm:mb-6 md:mb-8 relative flex items-center cursor-pointer timeline-item" on:click={() => toggleEvent(event)} on:keydown={(e) => e.key === 'Enter' && toggleEvent(event)} role="button" tabindex="0">
