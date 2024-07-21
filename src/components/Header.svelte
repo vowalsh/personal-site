@@ -2,6 +2,7 @@
     import { page } from '$app/stores';
     import { onMount } from 'svelte';
     import { writable } from 'svelte/store';
+    import { fade, fly } from 'svelte/transition';
   
     const icons = writable({});
   
@@ -14,13 +15,13 @@
   <header class="bg-header text-header font-mono fixed top-0 left-0 right-0 z-10">
     <nav class="container mx-auto px-4 py-6 flex justify-between items-center">
       <div class="text-xl font-bold">
-        <a href="/" class="hover:text-gray-300 transition-colors duration-200">owal.ml</a>
+        <a href="#home" class="hover:text-gray-300 transition-colors duration-200 class:active={$page.url.hash === '#home'}">owal.ml</a>
       </div>
       <div class="flex items-center space-x-6">
         <ul class="flex space-x-6">
           <li><a href="#about" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#about'}>about</a></li>
           <li><a href="#timeline" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#background'}>timeline</a></li>
-          <li><a href="#blog" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#blog'}>blog</a></li>
+          <li><a href="#thoughts" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#thoughts'}>thoughts</a></li>
           <li><a href="#contact" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#contact'}>contact</a></li>
         </ul>
         <div class="flex space-x-4">
