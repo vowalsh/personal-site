@@ -13,22 +13,28 @@
     let activeBlogPosts = new Set();
     let sectionVisibility = {};
 
-    function toggleEvent(event) {
-      if (activeEvents.has(event)) {
-        activeEvents.delete(event);
-      } else {
-        activeEvents.add(event);
-      }
-      activeEvents = activeEvents;
-    }
-  
     function toggleBlogPost(post) {
-      if (activeBlogPosts.has(post)) {
-        activeBlogPosts.delete(post);
-      } else {
-        activeBlogPosts.add(post);
-      }
-      activeBlogPosts = activeBlogPosts;
+        if (activeBlogPosts.has(post)) {
+            activeBlogPosts.delete(post);
+        } else {
+            activeBlogPosts.add(post);
+        }
+        activeBlogPosts = activeBlogPosts;
+        setTimeout(() => {
+            document.getElementById('thoughts').scrollIntoView({ behavior: 'smooth' });
+        }, 10);
+        }
+
+        function toggleEvent(event) {
+        if (activeEvents.has(event)) {
+            activeEvents.delete(event);
+        } else {
+            activeEvents.add(event);
+        }
+        activeEvents = activeEvents;
+        setTimeout(() => {
+            document.getElementById('timeline').scrollIntoView({ behavior: 'smooth' });
+        }, 10);
     }
   
     onMount(() => {
@@ -53,6 +59,10 @@
 </script>
 
 <style>
+    * {
+    scrollbar-width: none;
+    }
+
     :global(html, body) {
         overflow-x: hidden;
         scroll-behavior: smooth;
@@ -68,6 +78,11 @@
         height: 100vh;
         overflow-y: scroll;
         scroll-snap-type: y mandatory;
+        -ms-overflow-style: none;
+    }
+
+    main::-webkit-scrollbar {
+        display: none;
     }
 
     section {
@@ -88,11 +103,12 @@
     .section-visible .section-content {
         opacity: 1;
     }
+
 </style>
 
 <Header {currentSection} />
 
-<main class="bg-terminal-black text-terminal-white font-mono">
+<main class="bg-terminal-black text-terminal-white font-mono pb-24">
     <!-- home -->
     <section id="home" class="flex items-center justify-center" class:section-visible={sectionVisibility['home']}>
         <div class="section-content w-full max-w-5xl px-4 sm:px-6 lg:px-8 flex justify-center items-center">
@@ -110,21 +126,21 @@
                 <div class="space-y-4">
                     {#if showSubheader}
                     <p class="text-lg sm:text-xl md:text-2xl">
-                        <TerminalText text="blockchain engineering" speed={100} showCursor={false} />
+                        <TerminalText text="blockchain engineering" speed={75} showCursor={false} />
                     </p>
                     {/if}
                 </div>
                 <div class="space-y-4">
                     {#if showSubheader}
                     <p class="text-lg sm:text-xl md:text-2xl">
-                        <TerminalText text="distributed systems" speed={150} showCursor={false} />
+                        <TerminalText text="distributed systems" speed={100} showCursor={false} />
                     </p>
                     {/if}
                 </div>
                 <div class="space-y-4">
                     {#if showSubheader}
                     <p class="text-lg sm:text-xl md:text-2xl">
-                        <TerminalText text="decentralization" speed={200} showCursor={false} />
+                        <TerminalText text="decentralization" speed={125} showCursor={false} />
                     </p>
                     {/if}
                 </div>
@@ -137,7 +153,7 @@
         <div class="section-content w-full max-w-3xl text-center">
             <h2 class="text-3xl font-bold mb-8">about me</h2>
             <img src="/pic.png" alt="owal" class="w-36 sm:w-40 md:w-48 lg:w-56 aspect-square object-cover object-center rounded-full mx-auto mb-2 border border-terminal-white">
-            <p class="text-sm italic mb-6 mt-6">chillin' out in nyc</p>
+            <p class="text-sm italic mb-6 mt-6">lookin' smug in nyc</p>
             <p class="text-lg mb-4">
                 i'm a machine learning engineer currently focused on blockchain technology. my passion lies in developing innovative solutions that bridge the gap between ml and decentralized systems.
             </p>
@@ -149,12 +165,12 @@
       
     <!-- timeline -->
     <section id="timeline" class="flex items-center justify-center bg-terminal-black text-terminal-white p-8" class:section-visible={sectionVisibility['timeline']}>
-        <div class="section-content w-full max-w-3xl">
-            <h2 class="text-3xl font-bold mb-12 text-center">timeline</h2>
-            <div class="relative">
+        <div class="section-content w-full max-w-3xl max-h-[80vh] overflow-y-auto relative">
+            <h2 class="text-3xl font-bold mb-12 text-center sticky top-0 bg-terminal-black py-4 z-10">timeline</h2>
+            <div class="relative mt-16">
                 {#each timelineEvents as event, index}
                     <div class="mb-8 relative">
-                        <div class="flex items-start cursor-pointer" on:click={() => toggleEvent(event)}>
+                        <div role="button" tabindex="0" class="flex items-start cursor-pointer" on:click={() => toggleEvent(event)} on:keydown={(e) => e.key === 'Enter' && toggleEvent(event)}>
                             <div class="w-24 text-right pr-4 font-bold" class:text-[#94cbf3]={activeEvents.has(event)}>{event.year}</div>
                             <div class="w-4 h-4 rounded-full bg-terminal-white relative mt-1">
                                 {#if index !== timelineEvents.length - 1}
@@ -181,6 +197,8 @@
             </div>
         </div>
     </section>
+    
+    
       
     <!-- blog -->
     <section id="thoughts" class="flex items-center justify-center bg-terminal-black text-terminal-white p-8" class:section-visible={sectionVisibility['thoughts']}>
@@ -204,7 +222,7 @@
                                     {#if post.image && post.image.trim() !== ''}
                                         <img src={post.image} alt={post.title} class="w-full h-48 object-cover my-4 rounded">
                                     {/if}
-                                    <p class="mt-2 text-sm whitespace-pre-line">{@html post.content}</p>
+                                    <p class="mt-2 text-xs whitespace-pre-line">{@html post.content}</p>
                                 {/if}
                             </div>
                         </div>
@@ -213,4 +231,25 @@
             </div>
         </div>
     </section>
+
+    <!-- contact -->
+    <section id="contact" class="flex items-center justify-center bg-terminal-black text-terminal-white p-8" class:section-visible={sectionVisibility['contact']}>
+        <div class="section-content w-full max-w-3xl text-center">
+            <h2 class="text-3xl font-bold mb-8">contact</h2>
+            <p class="mb-4">Feel free to reach out:</p>
+            <a href="mailto:your.email@example.com" class="text-[#94cbf3] hover:underline">your.email@example.com</a>
+            <div class="mt-6 flex justify-center space-x-4">
+                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline">GitHub</a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline">LinkedIn</a>
+                <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline">Twitter</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- footer -->
+    <footer class="bg-terminal-black text-terminal-white text-center py-2 fixed bottom-0 left-0 right-0 z-50">
+        <p class="text-xs">&copy; {new Date().getFullYear()} v. oliver walsh. all rights reserved.</p>
+        <p class="text-xs mt-2">last updated: 7/21/2024</p>
+    </footer>
+    
 </main>
