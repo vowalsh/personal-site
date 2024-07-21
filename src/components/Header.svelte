@@ -18,6 +18,7 @@
       </div>
       <div class="flex items-center space-x-6">
         <ul class="flex space-x-6">
+          <li><a href="#about" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#about'}>about</a></li>
           <li><a href="#timeline" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#background'}>timeline</a></li>
           <li><a href="#blog" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#blog'}>blog</a></li>
           <li><a href="#contact" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#contact'}>contact</a></li>
