@@ -98,6 +98,21 @@
         color: #94cbf3;
     }
 
+    a, .timeline-item a, #about a {
+        color: #baedba;
+        text-decoration: underline;
+    }
+
+    #thoughts a, #thoughts .section-content a {
+        color: #8FBC8F;
+        text-decoration: underline;
+    }
+
+    .post-content a {
+        color: #8FBC8F;
+        text-decoration: underline;
+    }
+
 </style>
 
 <Header {currentSection} />
@@ -199,8 +214,8 @@
                                 {#if post.image && post.image.trim() !== ''}
                                     <img src={post.image} alt={post.title} class="w-full h-32 sm:h-48 object-cover my-2 sm:my-4 rounded">
                                 {/if}
-                                <p class="mt-1 sm:mt-2 text-xxs sm:text-xs md:text-sm whitespace-pre-line">{@html post.content}</p>
-                            {/if}
+                                <p class="mt-1 sm:mt-2 text-xxs sm:text-xs md:text-sm whitespace-pre-line post-content">{@html post.content}</p>
+                                {/if}
                         </div>
                     </div>
                 </div>

@@ -90,7 +90,7 @@ export const timelineEvents = [
     },
     {
         year: '2022',
-        description: 'graduated from Lehigh with M.S. in Computer Science & Engineering',
+        description: 'graduated from Lehigh w/ M.S. in Computer Science & Engineering',
         fullTimeline: 'august 2021 - may 2022',
         details: `
         gpa: 3.3 \n
