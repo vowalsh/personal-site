@@ -1,53 +1,21 @@
 <script>
-    import { page } from '$app/stores';
-    import { onMount } from 'svelte';
-    import { writable } from 'svelte/store';
-  
-    const icons = writable({});
-  
-    onMount(async () => {
-      const { Github, Twitter, Linkedin } = await import('svelte-icons/fa');
-      icons.set({ Github, Twitter, Linkedin });
-    });
+    export let currentSection;
   </script>
   
-  <header class="bg-header text-header font-mono fixed top-0 left-0 right-0 z-10">
-    <nav class="container mx-auto px-4 py-6 flex justify-between items-center">
-      <div class="text-xl font-bold">
-        <a href="#home" class="hover:text-gray-300 transition-colors duration-200 class:active={$page.url.hash === '#home'}">owal</a>
-      </div>
-      <div class="flex items-center space-x-6">
-        <ul class="flex space-x-6">
-          <li><a href="#about" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#about'}>about</a></li>
-          <li><a href="#timeline" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#background'}>timeline</a></li>
-          <li><a href="#thoughts" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#thoughts'}>thoughts</a></li>
-          <li><a href="#contact" class="hover:text-gray-300 transition-colors duration-200" class:active={$page.url.hash === '#contact'}>contact</a></li>
-        </ul>
-        <div class="flex space-x-4">
-          {#if $icons.Github}
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-gray-300 transition-colors duration-200">
-              <svelte:component this={$icons.Github} />
-            </a>
-          {/if}
-          {#if $icons.Twitter}
-            <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-gray-300 transition-colors duration-200">
-              <svelte:component this={$icons.Twitter} />
-            </a>
-          {/if}
-          {#if $icons.Linkedin}
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-gray-300 transition-colors duration-200">
-              <svelte:component this={$icons.Linkedin} />
-            </a>
-          {/if}
-        </div>
-      </div>
-    </nav>
-  </header>
-  
-  
-  <style>
-    .active {
-      @apply font-bold;
-    }
-  </style>
+  <nav class="fixed top-0 left-0 right-0 bg-terminal-black text-terminal-white p-2 sm:p-4 z-50 font-mono">
+    <ul class="flex flex-wrap justify-center space-x-2 sm:space-x-4">
+      {#each ['home', 'about', 'timeline', 'thoughts', 'contact'] as section}
+        <li>
+          <a 
+            href="#{section}" 
+            class="text-sm sm:text-base hover:text-[#94cbf3] transition-colors duration-200"
+            class:text-[#94cbf3]={currentSection === section}
+            class:font-bold={section === 'home'}
+          >
+            {section === 'home' ? 'owal' : section}
+          </a>
+        </li>
+      {/each}
+    </ul>
+  </nav>
   
