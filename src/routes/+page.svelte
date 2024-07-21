@@ -93,6 +93,11 @@
     .section-visible .section-content {
         opacity: 1;
     }
+
+    .clickable:hover {
+        color: #94cbf3;
+    }
+
 </style>
 
 <Header {currentSection} />
@@ -146,7 +151,7 @@
             <p class="text-[8px] sm:text-[10px] md:text-xs text-center text-gray-400 mb-0.5">click events for details</p>
             <div class="relative mt-4 sm:mt-8 md:mt-16">
                 {#each timelineEvents as event, index}
-                <div class="mb-3 sm:mb-6 md:mb-8 relative flex items-center cursor-pointer timeline-item" on:click={() => toggleEvent(event)} on:keydown={(e) => e.key === 'Enter' && toggleEvent(event)} role="button" tabindex="0">
+                <div class="mb-3 sm:mb-6 md:mb-8 relative flex items-center cursor-pointer timeline-item clickable" on:click={() => toggleEvent(event)} on:keydown={(e) => e.key === 'Enter' && toggleEvent(event)} role="button" tabindex="0">
                     <div class="w-12 sm:w-16 md:w-24 text-right pr-1 sm:pr-2 md:pr-4 font-bold text-xs sm:text-sm md:text-base flex-shrink-0" class:text-[#94cbf3]={activeEvents.has(event)}>{event.year}</div>
                     <div class="ml-1 sm:ml-2 md:ml-4 flex-grow relative">
                         <div class="flex items-center">
@@ -176,11 +181,12 @@
     <!-- blog -->
     <section id="thoughts" class="flex items-center justify-center bg-terminal-black text-terminal-white p-4 sm:p-8" class:section-visible={sectionVisibility['thoughts']}>
         <div class="section-content w-full max-w-3xl">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-12 text-center">thoughts</h2>
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-0.5 text-center sticky top-0 bg-terminal-black py-2 sm:py-4 z-10">thoughts</h2>
+            <p class="text-[8px] sm:text-[10px] md:text-xs text-center text-gray-400 mb-2 sm:mb-3 md:mb-4">click posts to expand</p>
             <div class="relative">
                 {#each blogPosts as post, index}
                 <div class="mb-4 sm:mb-8">
-                    <div class="flex items-center cursor-pointer" on:click={() => toggleBlogPost(post)}>
+                    <div class="flex items-center cursor-pointer clickable" on:click={() => toggleBlogPost(post)}>
                         {#if !activeBlogPosts.has(post)}
                             <span class="text-terminal-white text-sm sm:text-base md:text-lg mr-2">*</span>
                         {/if}
