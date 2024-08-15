@@ -228,8 +228,6 @@
     <section id="contact" class="flex items-center justify-center bg-terminal-black text-terminal-white p-4 sm:p-8" class:section-visible={sectionVisibility['contact']}>
         <div class="section-content w-full max-w-3xl text-center">
             <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-8">contact</h2>
-            <p class="text-xs sm:text-sm md:text-base mb-2 sm:mb-4">feel free to reach out:</p>
-            <a href="mailto:inquire@owal.me" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">inquire@owal.me</a>
             <div class="mt-3 sm:mt-6 flex justify-center space-x-2 sm:space-x-4">
                 <a href="https://github.com/oliverwalsh7" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">github</a>
                 <a href="https://linkedin.com/in/owal" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">linkedin</a>
