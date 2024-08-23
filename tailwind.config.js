@@ -8,7 +8,8 @@ export default {
         'terminal-white': '#FFFFFF',
       },
       fontFamily: {
-        mono: ['Menlo', 'Monaco', 'Courier New', 'monospace'],
+        'sans': ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+        'mono': ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
       },
       backgroundColor: {
         'header': 'rgba(0, 0, 0, 0.8)',
@@ -18,5 +19,36 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addBase }) {
+      addBase({
+        '@font-face': [
+          {
+            fontFamily: 'SF Pro Display',
+            src: 'url("/font/SF-Pro-Display-Regular.otf") format("opentype")',
+            fontWeight: '400',
+            fontStyle: 'normal',
+          },
+          {
+            fontFamily: 'SF Pro Display',
+            src: 'url("/font/SF-Pro-Display-Bold.otf") format("opentype")',
+            fontWeight: '700',
+            fontStyle: 'normal',
+          },
+          {
+            fontFamily: 'SF Pro Text',
+            src: 'url("/font/SF-Pro-Text-Regular.otf") format("opentype")',
+            fontWeight: '400',
+            fontStyle: 'normal',
+          },
+          {
+            fontFamily: 'SF Pro Text',
+            src: 'url("/font/SF-Pro-Text-Bold.otf") format("opentype")',
+            fontWeight: '700',
+            fontStyle: 'normal',
+          },
+        ],
+      });
+    },
+  ],
 }
