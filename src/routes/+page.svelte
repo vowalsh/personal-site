@@ -295,10 +295,7 @@
             <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-8">about me</h2>
             <img src="/pic.png" alt="owal" class="zoomed-image w-24 sm:w-32 md:w-40 lg:w-48 aspect-square object-cover object-center rounded-full mx-auto mb-6 sm:mb-8 border border-terminal-white">
             <p class="text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6">
-                i'm a machine learning engineer currently specializing in blockchain integration. my passion lies in developing innovative solutions that seamlessly incorporate ml into decentralized systems and other highly technical domains.</p>
-            <p class="text-xs sm:text-sm md:text-base lg:text-lg">
-                with experience in big tech, startup, and research environments, i strive to push the boundaries of what's possible in the realm of ai-powered blockchain applications.
-            </p>
+                i'm a machine learning engineer with experience in big tech, startup, and research environments. my passion lies in developing innovative solutions that seamlessly incorporate ml into decentralized systems and other highly technical domains.</p>
         </div>
     </section>
       
@@ -408,10 +405,10 @@
     </div>
     {/if}
 
-    <!-- contact -->
-    <section id="contact" class="flex items-center justify-center bg-terminal-black text-terminal-white p-4 sm:p-8" class:section-visible={sectionVisibility['contact']}>
+    <!-- links -->
+    <section id="links" class="flex items-center justify-center bg-terminal-black text-terminal-white p-4 sm:p-8" class:section-visible={sectionVisibility['links']}>
         <div class="section-content w-full max-w-3xl text-center">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-8">contact</h2>
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-8">links</h2>
             <div class="mt-3 sm:mt-6 flex justify-center space-x-2 sm:space-x-4">
                 <a href="https://github.com/oliverwalsh7" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">github</a>
                 <a href="https://linkedin.com/in/owal" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">linkedin</a>
@@ -423,7 +420,7 @@
     <!-- footer -->
     <footer class="bg-terminal-black text-terminal-white text-center py-1 sm:py-2 fixed bottom-0 left-0 right-0 z-50">
         <p class="text-xxs sm:text-xs">&copy; {new Date().getFullYear()} v. oliver walsh. all rights reserved.</p>
-        <p class="text-xxs sm:text-xs mt-1 sm:mt-2">last updated: 8/22/2024</p>
+        <p class="text-xxs sm:text-xs mt-1 sm:mt-2">last updated: 8/27/2024</p>
     </footer>
     
 </main>
