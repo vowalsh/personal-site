@@ -293,7 +293,6 @@
     <section id="about" class="flex items-center justify-center bg-terminal-black text-terminal-white p-4 sm:p-8" class:section-visible={sectionVisibility['about']}>
         <div class="section-content w-full max-w-3xl text-center">
             <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-8">about me</h2>
-            <img src="/pic.png" alt="owal" class="zoomed-image w-24 sm:w-32 md:w-40 lg:w-48 aspect-square object-cover object-center rounded-full mx-auto mb-6 sm:mb-8 border border-terminal-white">
             <p class="text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6">
                 i'm a machine learning engineer with experience in big tech, startup, and research environments. my passion lies in developing innovative solutions that seamlessly incorporate ml into decentralized systems and other highly technical domains.</p>
         </div>
