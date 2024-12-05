@@ -4,7 +4,7 @@
 
 <nav class="fixed top-0 left-0 right-0 bg-terminal-black text-terminal-white p-2 sm:p-4 z-50 font-mono">
     <ul class="flex flex-wrap justify-center space-x-2 sm:space-x-4">
-        {#each ['owal', 'about', 'timeline', 'thoughts', 'links'] as section}
+        {#each ['owal', 'about', 'timeline', 'links'] as section}
             <li>
                 <a 
                     href="#{section}" 
