@@ -235,23 +235,23 @@
     }
 
     :global(body) {
-        @apply font-mono text-base;
+        @apply font-sans text-base;
     }
 
     h1, h2, h3, h4, h5, h6 {
-        @apply font-mono font-bold;
+        @apply font-sans font-bold;
     }
 
     .section-content {
-        @apply font-mono;
+        @apply font-sans;
     }
 
     .timeline-item {
-        @apply font-mono;
+        @apply font-sans;
     }
 
     .post-content {
-        @apply font-mono;
+        @apply font-sans;
     }
 
     .timeline-item-asterisk {
@@ -261,7 +261,7 @@
 
 <Header {currentSection} />
 
-<main class="bg-terminal-black text-terminal-white font-mono min-h-screen overflow-y-auto text-xs sm:text-sm md:text-base">
+<main class="bg-terminal-black text-terminal-white min-h-screen overflow-y-auto text-xs sm:text-sm md:text-base">
     <!-- home -->
     <section id="owal" class="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-8" class:section-visible={sectionVisibility['owal']}>
         <div class="section-content w-full max-w-5xl px-2 sm:px-4 md:px-8 flex justify-center items-center">
@@ -302,8 +302,8 @@
     <section id="timeline" class="min-h-screen flex items-center justify-center bg-terminal-black text-terminal-white p-2 sm:p-4 md:p-8" class:section-visible={sectionVisibility['timeline']}>
         <div class="section-content w-full max-w-3xl relative overflow-y-auto max-h-[80vh]">
             <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-0.5 text-center sticky top-0 bg-terminal-black py-2 sm:py-4 z-10">timeline</h2>
-            <p class="text-[8px] sm:text-[10px] md:text-xs text-center text-gray-400 mb-0.5">click events for details</p>
-            <div class="relative mt-4 sm:mt-8 md:mt-16">
+            <p class="text-[8px] sm:text-[10px] md:text-xs text-center text-gray-400 mb-0">click events for details</p>
+            <div class="relative mt-2 sm:mt-4 md:mt-8">
                 {#each timelineEvents as theme}
                     <div class="mb-6 sm:mb-10">
                         <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-[#94cbf3]">{theme.theme}</h3>
@@ -337,29 +337,6 @@
         </div>
     </section>
       
-    <!-- blog -->
-    <section id="thoughts" class="flex items-center justify-center bg-terminal-black text-terminal-white p-4 sm:p-8" class:section-visible={sectionVisibility['thoughts']}>
-        <div class="section-content w-full max-w-3xl">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-0.5 text-center sticky top-0 bg-terminal-black py-2 sm:py-4 z-10">thoughts</h2>
-            <p class="text-[8px] sm:text-[10px] md:text-xs text-center text-gray-400 mb-2 sm:mb-3 md:mb-4">click posts to expand</p>
-            <div class="relative">
-                {#each blogPosts as post, index}
-                <div class="mb-4 sm:mb-8">
-                    <div class="flex items-center cursor-pointer clickable" on:click={() => openBlogPost(post)}>
-                        <span class="text-terminal-white text-sm sm:text-base md:text-lg mr-4">*</span>
-                        <div class="flex-grow">
-                            <div class="flex justify-between items-baseline">
-                                <h3 class="text-sm sm:text-base md:text-lg lg:text-xl font-bold">{post.title}</h3>
-                                <span class="text-xxs sm:text-xs md:text-sm italic">{post.date}</span>
-                            </div>
-                            <p class="mt-1 sm:mt-2 text-xxs sm:text-xs md:text-sm text-gray-400">{post.summary}</p>
-                        </div>
-                    </div>
-                </div>
-                {/each}
-            </div>
-        </div>
-    </section>
 
     {#if activePost}
     <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center" on:click|self={closeBlogPost}>
