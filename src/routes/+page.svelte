@@ -263,7 +263,7 @@
 
 <main class="bg-terminal-black text-terminal-white min-h-screen overflow-y-auto text-xs sm:text-sm md:text-base">
     <!-- home -->
-    <section id="owal.sh" class="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-8" class:section-visible={sectionVisibility['owal']}>
+    <section id="owal.sh" class="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-8" class:section-visible={sectionVisibility['owal.sh']}>
         <div class="section-content w-full max-w-5xl px-2 sm:px-4 md:px-8 flex justify-center items-center">
             <div class="w-full sm:w-5/6 md:w-4/5 lg:w-3/4 min-h-[25vh] text-center">
                 <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 sm:mb-4">
