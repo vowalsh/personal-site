@@ -10,7 +10,7 @@
                     href="#{section}" 
                     class="text-sm sm:text-base hover:text-[#94cbf3] transition-colors duration-200"
                     class:text-[#94cbf3]={currentSection === section}
-                    class:font-bold={section === 'owal'}
+                    class:font-bold={section === 'owal.sh'}
                 >
                     {section === 'home' ? 'owal' : section}
                 </a>

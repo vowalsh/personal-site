@@ -280,9 +280,6 @@
                     <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
                         <TerminalText text="distributed systems" speed={100} showCursor={false} />
                     </p>
-                    <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-                        <TerminalText text="decentralization" speed={125} showCursor={false} />
-                    </p>
                     {/if}
                 </div>
             </div>
@@ -388,7 +385,7 @@
             <div class="mt-3 sm:mt-6 flex justify-center space-x-2 sm:space-x-4">
                 <a href="https://github.com/oliverwalsh7" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">github</a>
                 <a href="https://linkedin.com/in/owal" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">linkedin</a>
-                <a href="https://twitter.com/0xOwal" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">twitter</a>
+                <a href="https://twitter.com/owalsh2" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">twitter</a>
             </div>
         </div>
     </section>
