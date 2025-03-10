@@ -12,7 +12,7 @@
                     class:text-[#94cbf3]={currentSection === section}
                     class:font-bold={section === 'owal.sh'}
                 >
-                    {section === 'home' ? 'owal' : section}
+                    {section === 'home' ? 'owal.sh' : section}
                 </a>
             </li>
         {/each}
