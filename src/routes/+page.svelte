@@ -383,8 +383,8 @@
         <div class="section-content w-full max-w-3xl text-center">
             <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-8">links</h2>
             <div class="mt-3 sm:mt-6 flex justify-center space-x-2 sm:space-x-4">
-                <a href="https://github.com/oliverwalsh7" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">github</a>
-                <a href="https://linkedin.com/in/owal" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">linkedin</a>
+                <a href="https://github.com/vowalsh" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">github</a>
+                <a href="https://linkedin.com/in/vowalsh" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">linkedin</a>
                 <a href="https://twitter.com/owalsh2" target="_blank" rel="noopener noreferrer" class="text-[#94cbf3] hover:underline text-xs sm:text-sm md:text-base">twitter</a>
             </div>
         </div>
