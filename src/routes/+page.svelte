@@ -6,6 +6,7 @@
     import { timelineEvents } from '../components/timeline.js';
     import { blogPosts } from '../components/thoughts.js';
 
+    // Define variables with their proper initialization values
     let showSubheader = false;
     let sections;
     let currentSection = 0;
@@ -14,7 +15,7 @@
     let sectionVisibility = {};
     let activePost = null;
     let currentImageIndex = 0;
-    let intervalId;
+    let intervalId = null;
     let fullImageSrc = null;
 
     function toggleEvent(event) {
@@ -85,7 +86,7 @@
         // Start new interval
         if (activePost.images && activePost.images.length > 1) {
             console.log('Starting interval');
-            intervalId = setInterval(cycleImage, 5000);
+            intervalId = window.setInterval(cycleImage, 5000);
         }
     }
 
@@ -98,7 +99,8 @@
     onMount(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                sectionVisibility[entry.target.id] = entry.isIntersecting;
+                const id = entry.target.id;
+                sectionVisibility[id] = entry.isIntersecting;
                 if (entry.isIntersecting) {
                     currentSection = Array.from(sections).indexOf(entry.target);
                 }
@@ -257,6 +259,159 @@
     .timeline-item-asterisk {
         @apply align-text-bottom;
     }
+
+    /* Timeline specific styles */
+    .timeline-container {
+        position: relative;
+    }
+
+    .timeline-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 36px;
+        width: 1px;
+        background-color: rgba(255, 255, 255, 0.06);
+        z-index: 1;
+    }
+
+    @media (min-width: 640px) {
+        .timeline-line {
+            left: 50px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .timeline-line {
+            left: 70px;
+        }
+    }
+
+    .timeline-item {
+        position: relative;
+        z-index: 2;
+        transition: transform 0.2s ease;
+        padding: 8px 0;
+    }
+
+    .timeline-item:hover {
+        transform: translateX(2px);
+    }
+
+    .timeline-dot {
+        position: absolute;
+        left: 35px;
+        top: 13px;
+        width: 2px;
+        height: 2px;
+        background-color: rgba(255, 255, 255, 0.25);
+        z-index: 3;
+        transition: all 0.3s ease;
+    }
+
+    @media (min-width: 640px) {
+        .timeline-dot {
+            left: 49px;
+            width: 3px;
+            height: 3px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .timeline-dot {
+            left: 69px;
+            width: 3px;
+            height: 3px;
+        }
+    }
+
+    .timeline-dot.active {
+        background-color: #94cbf3;
+    }
+
+    .timeline-year {
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.6);
+        transition: all 0.3s ease;
+        letter-spacing: 0.01em;
+        display: inline-block;
+        width: 100%;
+        text-align: right;
+    }
+
+    .timeline-year.active {
+        color: #94cbf3;
+    }
+
+    .timeline-desc {
+        transition: all 0.3s ease;
+        letter-spacing: 0.01em;
+    }
+
+    .timeline-content {
+        border-left: 1px solid rgba(255, 255, 255, 0.06);
+        padding-left: 1rem;
+        margin-left: 0.25rem;
+        margin-top: 0.75rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .timeline-details-text {
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.75rem;
+    }
+
+    .organization-link {
+        display: inline-block;
+        padding: 2px 8px;
+        margin-right: 8px;
+        margin-bottom: 4px;
+        color: #94cbf3;
+        font-size: 0.7rem;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        opacity: 0.9;
+    }
+
+    .organization-link:hover {
+        color: #b8dfff;
+        opacity: 1;
+    }
+
+    .timeline-category {
+        color: #94cbf3;
+        letter-spacing: 0.02em;
+        font-weight: 400;
+        margin-bottom: 1.75rem;
+    }
+    
+    .timeline-item-inner {
+        cursor: pointer;
+        transition: all 0.2s;
+        border-radius: 4px;
+        padding: 4px 0;
+    }
+    
+    .timeline-item-inner:hover {
+        background-color: rgba(255, 255, 255, 0.03);
+    }
+    
+    .timeline-item-inner:active {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .timeline-date {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.75rem;
+        font-style: normal;
+        margin-bottom: 0.5rem;
+    }
+    
+    .timeline-bullet {
+        color: #94cbf3;
+        padding-right: 4px;
+    }
 </style>
 
 <Header {currentSection} />
@@ -275,10 +430,10 @@
                         <TerminalText text="machine learning engineering" speed={50} showCursor={false} />
                     </p>
                     <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-                        <TerminalText text="blockchain engineering" speed={75} showCursor={false} />
+                        <TerminalText text="distributed systems" speed={100} showCursor={false} />
                     </p>
                     <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-                        <TerminalText text="distributed systems" speed={100} showCursor={false} />
+                        <TerminalText text="blockchain engineering" speed={75} showCursor={false} />
                     </p>
                     {/if}
                 </div>
@@ -299,35 +454,71 @@
     <section id="timeline" class="min-h-screen flex items-center justify-center bg-terminal-black text-terminal-white p-2 sm:p-4 md:p-8" class:section-visible={sectionVisibility['timeline']}>
         <div class="section-content w-full max-w-3xl relative overflow-y-auto max-h-[80vh]">
             <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-0.5 text-center sticky top-0 bg-terminal-black py-2 sm:py-4 z-10">timeline</h2>
-            <p class="text-[8px] sm:text-[10px] md:text-xs text-center text-gray-400 mb-0">click events for details</p>
+            <p class="text-[8px] sm:text-[10px] md:text-xs text-center text-gray-400 mb-10">click events for details</p>
+            
             <div class="relative mt-2 sm:mt-4 md:mt-8">
                 {#each timelineEvents as theme}
-                    <div class="mb-6 sm:mb-10">
-                        <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-[#94cbf3]">{theme.theme}</h3>
-                        {#each theme.events as event}
-                            <div class="mb-3 sm:mb-6 md:mb-8 relative flex items-center cursor-pointer timeline-item clickable" on:click={() => toggleEvent(event)} on:keydown={(e) => e.key === 'Enter' && toggleEvent(event)} role="button" tabindex="0">
-                                <div class="w-12 sm:w-16 md:w-24 text-right pr-1 sm:pr-2 md:pr-4 font-bold text-xs sm:text-sm md:text-base flex-shrink-0" class:text-[#94cbf3]={activeEvents.has(event)}>{event.year}</div>
-                                <div class="ml-1 sm:ml-2 md:ml-4 flex-grow relative">
-                                    <div class="flex items-center">
-                                        <span class="text-terminal-white text-sm sm:text-base md:text-lg mr-2 timeline-item-asterisk">*</span>
-                                        <div class="text-xs sm:text-sm md:text-base" class:text-[#94cbf3]={activeEvents.has(event)}>
-                                            {event.description}
+                    <div class="mb-12 sm:mb-16">
+                        <h3 class="timeline-category text-lg sm:text-xl md:text-2xl mb-10 pl-12 sm:pl-16 md:pl-24">{theme.theme}</h3>
+                        
+                        <div class="timeline-container">
+                            <div class="timeline-line"></div>
+                            
+                            {#each theme.events as event}
+                                <div class="mb-6 sm:mb-8 md:mb-10 relative timeline-item">
+                                    <div class="timeline-dot" class:active={activeEvents.has(event)}></div>
+                                    
+                                    <div class="flex items-start pl-12 sm:pl-16 md:pl-24">
+                                        <div class="w-20 sm:w-24 md:w-28 pr-4 sm:pr-6 md:pr-8 flex-shrink-0">
+                                            <span class="timeline-year text-xs sm:text-sm md:text-base" class:active={activeEvents.has(event)}>
+                                                {event.year}
+                                            </span>
                                         </div>
-                                    </div>
-                                    {#if activeEvents.has(event)}
-                                        <div class="mt-1 sm:mt-2 md:mt-4 ml-2 sm:ml-4 md:ml-8 pr-1 sm:pr-2 md:pr-4" transition:fade={{ duration: 300 }}>
-                                            <div class="italic text-xxs sm:text-xs md:text-sm">{event.fullTimeline}</div>
-                                            {#if event.organizations && event.organizations.length > 0}
-                                                <div class="mt-0.5 sm:mt-1 md:mt-2 text-xxs sm:text-xs md:text-sm">
-                                                    {@html event.organizations.map(org => `<a href="${org.link}" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-300">${org.name}</a>`).join(', ')}
+                                        
+                                        <div class="flex-grow">
+                                            <div 
+                                                class="timeline-item-inner"
+                                                on:click={() => toggleEvent(event)} 
+                                                on:keydown={(e) => e.key === 'Enter' && toggleEvent(event)}
+                                                role="button" 
+                                                tabindex="0"
+                                            >
+                                                <div class="timeline-desc text-xs sm:text-sm md:text-base hover:text-[#94cbf3]" 
+                                                    class:text-[#94cbf3]={activeEvents.has(event)}>
+                                                    {event.description}
+                                                </div>
+                                            </div>
+                                            
+                                            {#if activeEvents.has(event)}
+                                                <div class="timeline-content" transition:fade={{ duration: 150 }}>
+                                                    <div class="timeline-date">
+                                                        {event.fullTimeline}
+                                                    </div>
+                                                    
+                                                    {#if event.organizations && event.organizations.length > 0}
+                                                        <div class="mt-2 mb-4 flex flex-wrap">
+                                                            {#each event.organizations as org}
+                                                                <a href={org.link} target="_blank" rel="noopener noreferrer" 
+                                                                   class="organization-link">
+                                                                    {org.name}
+                                                                </a>
+                                                            {/each}
+                                                        </div>
+                                                    {/if}
+                                                    
+                                                    <div class="timeline-details-text whitespace-pre-line mt-1">
+                                                        {@html event.details
+                                                            .replace(/\n/g, '<br>')
+                                                            .replace(/\* /g, '<span class="timeline-bullet">•</span>')
+                                                        }
+                                                    </div>
                                                 </div>
                                             {/if}
-                                            <div class="mt-0.5 sm:mt-1 md:mt-2 text-xxs sm:text-xs md:text-sm whitespace-pre-line">{@html event.details.replace(/\n/g, '<br>')}</div>
                                         </div>
-                                    {/if}
+                                    </div>
                                 </div>
-                            </div>
-                        {/each}
+                            {/each}
+                        </div>
                     </div>
                 {/each}
             </div>
@@ -393,7 +584,7 @@
     <!-- footer -->
     <footer class="bg-terminal-black text-terminal-white text-center py-1 sm:py-2 fixed bottom-0 left-0 right-0 z-50">
         <p class="text-xxs sm:text-xs">&copy; {new Date().getFullYear()} v. oliver walsh. all rights reserved.</p>
-        <p class="text-xxs sm:text-xs mt-1 sm:mt-2">last updated: 8/27/2024</p>
+        <p class="text-xxs sm:text-xs mt-1 sm:mt-2">last updated: 3/25/2025</p>
     </footer>
     
 </main>

@@ -7,11 +7,10 @@ export const timelineEvents = [
         description: 'joined OpenGradient as a full-time ML engineer',
         fullTimeline: 'july 2024 - present',
         details: `
-        * leading multiple internal efforts
-        * attended EthCC 2024 in Brussels with the team
+        * lead ML engineer: working on modeling, ml infra, agent tooling, developer tooling, product, etc
         `,
         organizations: [
-        { name: 'OpenGradient', link: 'https://www.linkedin.com/company/valence-research/' }, 
+        { name: 'OpenGradient', link: 'https://opengradient.ai' }, 
         ]
       },
       {
@@ -19,14 +18,11 @@ export const timelineEvents = [
         description: 'returned to Coinbase as a full-time ML engineer',
         fullTimeline: 'june 2022 - may 2024',
         details: `
-        served as a Machine Learning Engineer on the ML Platform team, helping build virtually every facet of the ML platform, work including:
-        * building and maintaining the ML Platform's core infrastructure
-        * aiding the transition from legacy in-house solutions to componentization of industry leading third-party vendors like Tecton, Anyscale Ray, Fiddler, and MLFlow
-        * developing ML observability, monitoring, and explainability tooling
-        * contributing to improvements of the model serving architecture
-        * collaborating with ML modeling engineers from the risk and recommendation teams
-        * ideating internship project to enable universal hyperparameter tuning
-        * regularly completing demanding on-call shifts 
+        served as a Machine Learning Engineer on the ML Platform team:
+        * contributed to and maintained the ML Platform's core infrastructure
+        * aided the transition from legacy in-house solutions to componentization of industry leading third-party vendors like Tecton, Anyscale Ray, Fiddler, and MLFlow
+        * developed ML observability, monitoring, and explainability tooling
+        * collaborated with ML modeling engineers from the risk and recommendation teams
         `,
         organizations: [
         { name: 'coinbase', link: 'https://www.coinbase.com/' }, 
@@ -37,7 +33,7 @@ export const timelineEvents = [
         description: 'ML intern at Coinbase',
         fullTimeline: 'june 2021 - august 2021',
         details: `
-        * one of the early interns on the ML team at Coinbase, competed an end-to-end project to enable observability throughout the ML lifecycle, comprised of components throughout entire platform.
+        * one of the early interns on the ML team at Coinbase, competed an end-to-end project to enable greater observability throughout the ML lifecycle.
         `,
         organizations: [
         { name: 'ml @ coinbase', link: 'https://www.coinbase.com/blog/building-state-of-the-art-machine-learning-technology-with-efficient/' }, 
@@ -66,7 +62,7 @@ export const timelineEvents = [
     ]
   },
   {
-    theme: "academia",
+    theme: "academics",
     events: [
         {
         year: '2024',
@@ -140,15 +136,15 @@ export const timelineEvents = [
       },
       {
         year: '2017',
-        description: 'began my journey in computer science at Lehigh University',
+        description: 'began journey in computer science at Lehigh University',
         fullTimeline: 'august 2017 - may 2022',
-        details: `fell in love with programming, went on to:
-        \t* establish the Lehigh Coders' Community (now the Lehigh ACM chapter)
-        \t* become first ever Technical Development Chair of the CSB Association
-        \t* become one of the early members of Lehigh Blockchain
-        \t* join & conduct research with the Scalable Systems Software Research Group (SSS-RP)
-        \t* work as a Junior Systems Administrator
-        \t* TA five courses, head TA of CSE 262 Programming Languages`,
+        details: `
+        \t* founded the Lehigh Coders' Community (now the Lehigh ACM chapter)
+        \t* first ever Technical Development Chair of the CSB Association
+        \t* early member of Lehigh Blockchain
+        \t* research with the Scalable Systems Software Research Group (SSS-RP)
+        \t* worked part time as a Junior Systems Administrator
+        \t* TA'd five courses, head TA of CSE 262 Programming Languages`,
         organizations: [
         { name: 'cse @ Lehigh', link: 'https://engineering.lehigh.edu/cse' }, 
         { name: 'Lehigh ACM', link: 'https://acm.cse.lehigh.edu/' },

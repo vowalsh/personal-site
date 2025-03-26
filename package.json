@@ -37,6 +37,7 @@
 	"type": "module",
 	"dependencies": {
 		"autoprefixer": "^10.4.19",
+		"package.json": "^2.0.1",
 		"svelte-icons": "^2.1.0",
 		"svelte-scrollto": "^0.2.0",
 		"swiper": "^11.1.10",
